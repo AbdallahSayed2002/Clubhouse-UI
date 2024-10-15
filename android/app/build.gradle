@@ -1,0 +1,49 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.clubhouse_ui"
+    compileSdk = 34 // Ensure this is correctly set
+
+    ndkVersion = flutter.ndkVersion // Ensure this version is set correctly
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17 // Ensure compatibility for Java 8
+        targetCompatibility = JavaVersion.VERSION_17 // Ensure compatibility for Java 8
+    }
+
+    kotlinOptions {
+        jvmTarget = "17" // Ensure compatibility with JVM 1.8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.clubhouse_ui"
+        minSdk = 21
+        targetSdk = 34 // Ensure this is properly configured
+        versionCode = flutter.versionCode.toInteger()
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug // Use your own signing config for production
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+flutter {
+    source '../..' // Points to the Flutter source
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Ensure this version matches your Kotlin setup
+    // ErrorProne annotations
+    implementation "com.google.errorprone:error_prone_annotations:2.11.0"
+    // Javax annotations
+    implementation "javax.annotation:javax.annotation-api:1.3.2"
+}
